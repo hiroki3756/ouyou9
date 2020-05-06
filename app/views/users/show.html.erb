@@ -4,7 +4,15 @@
 <h2>User info</h2>
 <%= render 'users/profile', user: @user %>
 <!--同コントローラーのviewで表示ならusersは省略可 -->
+<% if @user != current_user %>
+  <p><%= "#{@user.name}さんとのチャットを始める" %></p>
+  <%= form_with model: @room do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    <%= f.submit %>
+  <% end %>
 
+<% end %>
 <h2>New book</h2>
 <%= render 'books/newform', book: @book %>
 </div>

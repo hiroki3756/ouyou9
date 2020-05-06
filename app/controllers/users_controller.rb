@@ -4,7 +4,10 @@ class UsersController < ApplicationController
   def show
   	@user = User.find(params[:id])
   	@books = @user.books
-  	@book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+	  @book = Book.new #new bookの新規投稿で必要（保存処理はbookコントローラー側で実施）
+	  if user_signed_in?
+		@room = Room.new
+	  end
   end
 
   def index
